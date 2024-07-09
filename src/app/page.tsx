@@ -1,3 +1,12 @@
+'use client';
+
+import HomePage from '../containers/home';
+
+type Props = {
+  count: number;
+  products: Producst[];
+};
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return <HomePage />;
 }
