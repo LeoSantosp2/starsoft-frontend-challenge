@@ -6,11 +6,11 @@ export const Footer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.footerBg};
+  background-color: ${({ theme }) => theme.colors.tertiary};
 
   p {
     font-size: 1.2rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.footerText};
+    color: ${({ theme }) => theme.colors.black};
   }
 `;

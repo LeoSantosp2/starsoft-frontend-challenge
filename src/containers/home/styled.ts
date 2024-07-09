@@ -8,7 +8,7 @@ export const Page = styled.section`
 
 export const Main = styled.main`
   width: 100%;
-  min-height: 100vh;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,13 +23,13 @@ export const ProductGrid = styled.div`
 `;
 
 export const ProductContainer = styled.div`
-  width: 22rem;
+  width: 25rem;
   border-radius: 1rem;
   box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1352);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.productContainerBg};
+  background-color: ${({ theme }) => theme.colors.white};
 
   .image {
     text-align: center;
@@ -45,7 +45,7 @@ export const ProductContainer = styled.div`
   .product-info h1 {
     font-size: 1.6rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.grayOne};
   }
 
   .product-info p {
@@ -56,8 +56,8 @@ export const ProductContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.priceBg};
-    color: ${({ theme }) => theme.colors.priceText};
+    background-color: ${({ theme }) => theme.colors.grayTwo};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   .product-description {
@@ -67,7 +67,7 @@ export const ProductContainer = styled.div`
   .product-description p {
     font-weight: 300;
     text-align: justify;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.grayOne};
   }
 
   button {
@@ -83,7 +83,7 @@ export const ProductContainer = styled.div`
     text-transform: uppercase;
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.buttonText};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   button svg {

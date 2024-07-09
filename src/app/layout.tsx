@@ -1,10 +1,6 @@
-'use client';
-
-import { ThemeProvider } from 'styled-components';
 import { Montserrat } from 'next/font/google';
 
-import { GlobalStyles } from '../styles/global-styles';
-import { theme } from '../styles/theme';
+import Providers from '../providers';
 
 const montserrant = Montserrat({ subsets: ['latin'] });
 
@@ -14,12 +10,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
+    <Providers>
       <html lang="pt-BR">
-        <title>Model Project NextJs</title>
+        <title>MKS Sistemas</title>
         <body className={montserrant.className}>{children}</body>
       </html>
-    </ThemeProvider>
+    </Providers>
   );
 }
