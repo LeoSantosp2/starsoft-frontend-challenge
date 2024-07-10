@@ -20,6 +20,18 @@ jest.mock('../utils/add-to-cart', () => ({
   addToCart: jest.fn(),
 }));
 
+jest.mock('../utils/handle-more', () => ({
+  handleMore: jest.fn(),
+}));
+
+jest.mock('../utils/handle-less', () => ({
+  handleLess: jest.fn(),
+}));
+
+jest.mock('../utils/delete-product', () => ({
+  deleteProduct: jest.fn(),
+}));
+
 describe('Home Page and Components', () => {
   beforeEach(() => {
     jest.clearAllMocks();
