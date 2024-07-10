@@ -13,7 +13,7 @@ Teste para uma vaga de emprego de Front-End da empresa MKS Sistemas. O site faz 
 - Exclui produtos do carrinho
 
 ## Inicio
-1- Caso queira testar o projeto em sua própria máquina, faça o clone deste repositório usando o seguinte comando `google.com`.
+1- Caso queira testar o projeto em sua própria máquina, faça o clone deste repositório usando o seguinte comando `git clone https://github.com/LeoSantosp2/starsoft-frontend-challenge.git`.
 
 2- Execute o comando `npm install` ou `npm i`.
 
