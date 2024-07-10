@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 
 import { useShowHidden } from '../../context/show-hidden';
 
+import { handleMore } from '../../utils/handle-more';
+import { handleLess } from '../../utils/handle-less';
+import { deleteProduct } from '../../utils/delete-product';
+
 import { ProductCartProps } from '../../types/products-props';
 
 import * as Styles from './styled';
@@ -13,53 +17,6 @@ export default function ShoppingCartComponent() {
   const [total, setTotal] = useState(0);
 
   const { showHidden, handleShowHidden } = useShowHidden();
-
-  const handleLess = (id: number) => {
-    products.forEach((product) => {
-      if (product.id === id) {
-        if (product.qtd === 1) return;
-
-        product.qtd -= 1;
-
-        product.price = (
-          Number(product.price) - Number(product.originalPrice)
-        ).toString();
-      }
-    });
-
-    localStorage.setItem('cart', JSON.stringify(products));
-
-    window.location.reload();
-  };
-
-  const handleMore = (id: number) => {
-    products.forEach((product) => {
-      if (product.id === id) {
-        product.qtd += 1;
-        product.price = (
-          Number(product.originalPrice) * Number(product.qtd)
-        ).toString();
-      }
-    });
-
-    localStorage.setItem('cart', JSON.stringify(products));
-
-    window.location.reload();
-  };
-
-  const deleteProduct = (id: number) => {
-    const response = localStorage.getItem('cart');
-
-    const products = response ? JSON.parse(response) : [];
-
-    const newProducts = products.filter(
-      (product: ProductCartProps) => product.id !== id,
-    );
-
-    localStorage.setItem('cart', JSON.stringify(newProducts));
-
-    window.location.reload();
-  };
 
   useEffect(() => {
     const response = localStorage.getItem('cart');
@@ -107,11 +64,17 @@ export default function ShoppingCartComponent() {
             <div className="qtd">
               <p>Qtd</p>
               <div>
-                <button className="less" onClick={() => handleLess(product.id)}>
+                <button
+                  className="less"
+                  onClick={() => handleLess(product.id, products)}
+                >
                   -
                 </button>
                 <p>{product.qtd}</p>
-                <button className="more" onClick={() => handleMore(product.id)}>
+                <button
+                  className="more"
+                  onClick={() => handleMore(product.id, products)}
+                >
                   +
                 </button>
               </div>
