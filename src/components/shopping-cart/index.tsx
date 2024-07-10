@@ -37,7 +37,7 @@ export default function ShoppingCartComponent() {
       if (product.id === id) {
         product.qtd += 1;
         product.price = (
-          Number(product.originalPrice) * product.qtd
+          Number(product.originalPrice) * Number(product.qtd)
         ).toString();
       }
     });

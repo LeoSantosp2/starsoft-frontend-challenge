@@ -1,11 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { ProductsProps } from '../types/products-props';
+import { DataProps } from '../types/data-props';
 
 export const useProducts = () => {
-  const [products, setProducts] = useState<ProductsProps[]>([]);
-
-  const fetchProducts = useCallback(async () => {
+  const fetchProducts = async () => {
     try {
       const response = await fetch(
         'https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC',
@@ -13,17 +11,19 @@ export const useProducts = () => {
 
       const datas = await response.json();
 
-      setProducts(datas.products);
+      return datas;
     } catch (err) {
       console.log('Erro ao buscar os produtos:', (err as Error).message);
     }
-  }, []);
+  };
 
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+  const { data, isPending } = useQuery<DataProps>({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  });
 
   return {
-    products,
+    data,
+    isPending,
   };
 };

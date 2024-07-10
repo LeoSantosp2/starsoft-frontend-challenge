@@ -7,35 +7,18 @@ import ShoppingCartComponent from '../../components/shopping-cart';
 
 import { useProducts } from '../../hooks/use-products';
 
+import { addToCart } from '../../utils/add-to-cart';
+
 import { ProductsProps } from '../../types/products-props';
 
 import * as Styles from './styled';
 
 export default function HomePage() {
-  const { products } = useProducts();
+  const { data, isPending } = useProducts();
 
-  const addToCart = (product: ProductsProps) => {
-    const response = localStorage.getItem('cart');
-
-    const products = response ? JSON.parse(response) : [];
-
-    const newProduct = {
-      id: product.id,
-      name: product.name,
-      brand: product.brand,
-      description: product.description,
-      photo: product.photo,
-      originalPrice: product.price,
-      price: product.price,
-      qtd: 1,
-    };
-
-    const newProducs = [...products, newProduct];
-
-    localStorage.setItem('cart', JSON.stringify(newProducs));
-
-    window.location.reload();
-  };
+  if (isPending) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <Styles.Page>
@@ -45,7 +28,7 @@ export default function HomePage() {
 
       <Styles.Main>
         <Styles.ProductGrid>
-          {products.map((product) => (
+          {data?.products.map((product: ProductsProps) => (
             <Styles.ProductContainer key={product.id}>
               <div className="image">
                 <Image
@@ -67,7 +50,8 @@ export default function HomePage() {
               </div>
 
               <button onClick={() => addToCart(product)}>
-                <RiShoppingBag2Line size={18} /> Comprar
+                <RiShoppingBag2Line />
+                Comprar
               </button>
             </Styles.ProductContainer>
           ))}
